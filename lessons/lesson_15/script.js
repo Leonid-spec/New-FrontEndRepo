@@ -64,3 +64,20 @@ function showAccounts() {
 
   // }
 }
+
+
+// ДЕБЕТОВАЯ КАРТА (карта не уходящая в минус)
+
+const deposit = document.getElementById("deposit");
+const withdraw = document.getElementById("withdraw");
+
+deposit.onclick = function() {
+  // TODO (Описание действия при нажатии на кнопку deposit)
+  
+
+}
+
+withdraw.onclick = function() {
+  // TODO  (Описание действия при нажатии на кнопку withdraw)
+
+}
