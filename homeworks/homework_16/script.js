@@ -77,47 +77,59 @@ function showAccounts() {
   });
 }
 
-// ДЕБЕТОВАЯ КАРТА (карта не уходящая в минус!)
+// bankAccount.remove = function (accountNumber) {
+//   accountNumber === accountId
+//     ? bankAccount.remove(accountNumber)
+//     : alert("Account not found");
+// };
+
+// ДЕБЕТОВАЯ КАРТА (карта не уходящая в минус)
 
 const deposit = document.getElementById("deposit");
 const withdraw = document.getElementById("withdraw");
+const remove = document.getElementById("remove");
 
+// Описание действия при нажатии на кнопку deposit
 deposit.onclick = function () {
-  // TODO (Описание действия при нажатии на кнопку deposit)
-  const accountIdInput = document.getElementById("accountId");
-  const amountInput = document.getElementById("amount");
-
-  const accountId = accountIdInput.value.trim();
-  const amount = Number(amountInput.value.trim());
-
-  bank.forEach((accountElement) => {
-    if (accountElement.accountNumber.toString() === accountId) {
-      const initialBalance = accountElement.balance; // Сохраняем начальный баланс
-      accountElement.deposit(amount); // Проверяем, изменился ли баланс
-
-      if (accountElement.balance > initialBalance) {
-        alert(`Successfully deposited ${amount} to account ID: ${accountId}`);
-      }
-    }
-  });
+  operation("deposit");
 };
 
+// Описание действия при нажатии на кнопку withdraw
 withdraw.onclick = function () {
-  // TODO (Описание действия при нажатии на кнопку withdraw)
+  operation("withdraw");
+};
+
+remove.onclick = function () {
+  operation("remove");
+};
+
+function operation(operator) {
   const accountIdInput = document.getElementById("accountId");
-  const accountId = accountIdInput.value.trim();
-
   const amountInput = document.getElementById("amount");
-  const amount = Number(amountInput.value.trim());
 
-  bank.forEach((accountElement) => {
-    if (accountElement.accountNumber.toString() === accountId) {
-      const initialBalance = accountElement.balance; // Сохраняем начальный баланс
-      accountElement.withdraw(amount); // Проверяем, изменился ли баланс
+  const accountId = accountIdInput.value.trim(); // string
+  const amount = +amountInput.value.trim(); // number (число или NaN)
 
-      if (accountElement.balance < initialBalance) {
-        alert(`Successfully withdraw ${amount} to account ID: ${accountId}`);
+  const accountFind = bank.find(
+    (e) => e.accountNumber.toString() === accountId
+  );
+
+  if (accountFind) {
+    if (operator === "deposit") {
+      accountFind.deposit(amount);
+    } else if (operator === "withdraw") {
+      accountFind.withdraw(amount);
+    } else if (operator === "remove") {
+      const index = bank.indexOf(accountFind);
+      if (index !== -1) {
+        bank.splice(index, 1); // Удаление аккаунта из массива
+        alert(`Account ID ${accountId} removed successfully.`);
       }
     }
-  });
-};
+  } else {
+    alert("Account not found");
+  }
+
+  accountIdInput.value = "";
+  amountInput.value = "";
+}
