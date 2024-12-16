@@ -71,9 +71,26 @@ function showAccounts() {
   accountList.innerHTML = "";
 
   bank.forEach((account, index) => {
-    accountList.innerHTML += `<li>${index + 1}. ID: ${
-      account.accountNumber
-    }, Name: ${account.accountHolderName}, Balance: ${account.balance}</li>`;
+    // accountList.innerHTML += `<li>${index + 1}. ID: ${
+    //   account.accountNumber
+    // }, Name: ${account.accountHolderName}, Balance: ${account.balance}  </li> `;
+
+    const li = document.createElement("li");
+    li.textContent = `ID: ${account.accountNumber}, Name: ${account.accountHolderName}, Balance: ${account.balance}`;
+
+    // Логика удаления
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    
+    
+    deleteBtn.onclick = function () {
+      bank.splice(index, 1);
+      showAccounts();
+    };
+
+
+    li.accountList.append(deleteBtn);
+    accountList.append(li);
   });
 }
 
@@ -99,10 +116,6 @@ withdraw.onclick = function () {
   operation("withdraw");
 };
 
-remove.onclick = function () {
-  operation("remove");
-};
-
 function operation(operator) {
   const accountIdInput = document.getElementById("accountId");
   const amountInput = document.getElementById("amount");
@@ -117,14 +130,8 @@ function operation(operator) {
   if (accountFind) {
     if (operator === "deposit") {
       accountFind.deposit(amount);
-    } else if (operator === "withdraw") {
+    } else {
       accountFind.withdraw(amount);
-    } else if (operator === "remove") {
-      const index = bank.indexOf(accountFind);
-      if (index !== -1) {
-        bank.splice(index, 1); // Удаление аккаунта из массива
-        alert(`Account ID ${accountId} removed successfully.`);
-      }
     }
   } else {
     alert("Account not found");
@@ -133,12 +140,3 @@ function operation(operator) {
   accountIdInput.value = "";
   amountInput.value = "";
 }
-
-// const button = document.getElementById('remove'); 
-//   button.addEventListener('mouseover', () => { 
-//     // Генерация случайных координат для перемещения кнопки 
-//     const offsetX = Math.random() * (window.innerWidth - button.clientWidth); 
-//     const offsetY = Math.random() * (window.innerHeight - button.clientHeight); 
-//     // Обновление позиции кнопки 
-//     button.style.left = `${offsetX}px`; 
-//     button.style.top = `${offsetY}px`; });
