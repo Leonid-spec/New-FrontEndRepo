@@ -31,7 +31,7 @@
 
 // getDog()
 
-// btnUpdate.addEventListener('click', getDog);
+// btnUpdate.addEventListener('click', getDog)
 
 const img = document.querySelector("#rick-img");
 const btnUpdate = document.querySelector("#btn-update");
