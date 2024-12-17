@@ -9,6 +9,11 @@
     flex-direction: column;
 }
 
+.consultation-container {
+    display: flex;
+    flex-direction: column;
+}
+
 main {
     padding: 0px 30px;
 }
