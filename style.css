@@ -1,22 +1,20 @@
 
-.lesson-container {
+ .container {
     display: flex;
     flex-direction: column;
-}
-
-.homework-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.consultation-container {
-    display: flex;
-    flex-direction: column;
+gap: 10px
+;
 }
 
 main {
     padding: 0px 30px;
 }
+
+h2 {
+    margin-bottom: 5px; 
+  }
+  
+
 h1{
     color: rgb(61, 47, 255);
 }
@@ -27,4 +25,15 @@ a {
 a:hover{
     text-decoration: underline;
     color: rgb(95, 212, 17);
+}
+
+.lesson-container{
+    color: rgb(14, 110, 38);
+}
+
+.homework-container{
+    color: rgb(145, 37, 33);
+}
+.consultation-container{
+    color: rgb(180, 177, 8);
 }
