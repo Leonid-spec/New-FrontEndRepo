@@ -26,7 +26,7 @@ async function fetchProducts() {
     const price = document.createElement("p");
     price.textContent = `Price: ${product.price}€`;
 
-    card.append(heading, price, wrapper, desc);
+    card.append(heading,desc, price, wrapper);
     gridProducts.append(card);
   });
 }
