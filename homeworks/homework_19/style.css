@@ -6,6 +6,8 @@
 
 
 .product-card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
     border-radius: 10px;
     border: 1px solid black;
     padding: 20px 30px;
@@ -22,3 +24,7 @@
     object-fit: contain;
 }
 
+.product-card.primary {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+  }
